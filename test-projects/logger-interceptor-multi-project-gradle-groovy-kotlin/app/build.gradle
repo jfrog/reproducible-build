@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    //noinspection GradleDependency
+
+    defaultConfig {
+        applicationId "ihsanbal.com.logginginterceptor"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        buildConfigField("boolean", "MOCK", "false")
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+
+        disable 'AllowBackup'
+        disable 'GoogleAppIndexingWarning'
+    }
+
+    buildTypes {
+        mock {
+            debuggable true
+            buildConfigField("boolean", "MOCK", "true")
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'io.reactivex:rxjava:' + rxjavaVersion
+    implementation 'io.reactivex:rxandroid:' + rxAndroidVersion
+    implementation 'com.squareup.retrofit2:retrofit:' + retrofitVersion
+    implementation 'com.squareup.retrofit2:adapter-rxjava:' + retrofitRxAdapterVersion
+    implementation 'com.google.dagger:dagger:' + daggerVersion
+    implementation 'com.squareup.retrofit2:converter-gson:' + gsonConverterVersion
+    implementation 'com.squareup.okhttp3:okhttp:' + okhttpVersion
+    implementation 'com.squareup.okio:okio:' + okioVersion
+    kapt 'com.google.dagger:dagger-compiler:' + daggerVersion
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:' + leakCanaryVersion
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:' + leakCanaryVersion
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:' + leakCanaryVersion
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation(project(':lib')) {
+        exclude group: 'org.json', module: 'json'
+    }
+//    implementation('com.github.ihsanbal:LoggingInterceptor:3.1.0-rc2') {
+//        exclude group: 'org.json', module: 'json'
+//    }
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+}

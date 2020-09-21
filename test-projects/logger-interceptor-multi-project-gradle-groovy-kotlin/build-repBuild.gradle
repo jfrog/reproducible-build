@@ -1,0 +1,72 @@
+buildscript {
+
+    ext.kotlin_version = '1.3.61'
+    ext.jsonVersion = '20180130'
+    ext.okioVersion = '2.2.2'
+    ext.retrofitVersion = '2.6.2'
+    ext.retrofitRxAdapterVersion = '2.6.2'
+    ext.gsonConverterVersion = '2.6.2'
+    ext.okhttpVersion = '4.4.0'
+    ext.rxjavaVersion = '1.0.10'
+    ext.rxAndroidVersion = '1.0.1'
+    ext.daggerVersion = '2.8'
+    ext.supportVersion = '29.0.3'
+    ext.leakCanaryVersion = '1.5'
+
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenLocal()
+        jcenter()
+        google()
+    }
+    dependencies {
+        //noinspection
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath "gradle.plugin.org.gradle.crypto:checksum:1.2.0"
+    }
+}
+
+project.ext {
+    groupId = 'com.github.ihsanbal'
+    artifactId = 'LoggingInterceptor'
+    snapshot = '3.1.0-rc2'
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+        google()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+apply plugin: 'groovy'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+tasks.withType(AbstractArchiveTask) {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+jar.doLast { task ->
+    ant.checksum file: task.archivePath
+}
+
+task showPlugins {
+    project.plugins.each {
+        println it.getClass().name
+    }
+}
+
+/*task clean(type: Delete) {
+    delete rootProject.buildDir
+}*/
+

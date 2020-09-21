@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_post" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_zip" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_get" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_delete" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.patch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_patch" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.put"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_put" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.pdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_pdf" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button.pdf.upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/req_pdf_upload" />
+</LinearLayout>
