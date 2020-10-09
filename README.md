@@ -178,6 +178,16 @@ tasks.withType<AbstractArchiveTask>().configureEach {
     isReproducibleFileOrder = true
 }
 ```
+To make reproducible builds by all child projects, add the scope "subprojects" to build.gradle file:
+```
+subprojects {
+    tasks.withType(AbstractArchiveTask) {
+        preserveFileTimestamps = false
+        reproducibleFileOrder = true
+    }
+}
+```
+
 ## Example Gradle Reproducible Building
 Uses [settings-repBuild.gradle](./test-projects/logger-interceptor-multi-project-gradle-groovy-kotlin/settings-repBuild.gradle) and [build-repBuild.gradle](./test-projects/logger-interceptor-multi-project-gradle-groovy-kotlin/build-repBuild.gradle).
 ```
