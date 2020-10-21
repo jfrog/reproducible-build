@@ -65,6 +65,13 @@ task showPlugins {
         println it.getClass().name
     }
 }
+// Reproducible builds in all child projects
+subprojects {
+    tasks.withType(AbstractArchiveTask) {
+        preserveFileTimestamps = false
+        reproducibleFileOrder = true
+    }
+}
 
 /*task clean(type: Delete) {
     delete rootProject.buildDir
